@@ -15,12 +15,12 @@ async def cb_handler(client: Bot, query: CallbackQuery):
 
     if data == "about":
         await query.message.edit_text(
-            text=f"<b>○ Creator : <a href='tg://user?id={OWNER_ID}'>This Person</a>\n"
+            text=f"<b>○ Creator :「 ✦ 𝑨̲̅𝒏̲̅𝒐̲̅𝒏̲̅𝒚̲̅𝒎̲̅𝒐̲̅𝒖̲̅𝒔̲̅ ✦ 」 \n" #<a href='tg://user?id={0}'>This Person</a>
                  f"○ Language : <code>Python3</code>\n"
                  f"○ Library : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio {__version__}</a>\n"
-                 f"○ Source Code : <a href='https://youtu.be/BeNBEYc-q7Y'>Click here</a>\n"
-                 f"○ Channel : @{CHANNEL}\n"
-                 f"○ Support Group : @{SUPPORT_GROUP}</b>",
+                 f"○ Source Code : NoT Free \n"
+                 f"○ Channel : __________\n"          #@{CHANNEL}
+                 f"○ Support Group :__________ </b>", #@{SUPPORT_GROUP}
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("🔒 Close", callback_data="close")]]
