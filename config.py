@@ -9,19 +9,19 @@ APP_ID = int(os.environ.get("APP_ID", "21863401"))
 API_HASH = os.environ.get("API_HASH", "5f7d3dc656c008c70bffdf7f4f9b8ebb")
  
 BAN = int(os.environ.get("BAN", "0")) #Owner user id - dont chnge 
-OWNER = os.environ.get("OWNER", "PhDLust") #Owner username
+OWNER = os.environ.get("OWNER", "Owner") #Owner username
 OWNER_ID = int(os.environ.get("OWNER_ID", "6230356497")) #Owner user id
-OWNER_USERNAME = os.environ.get('OWNER_USERNAME', 'PhDLust')
-SUPPORT_GROUP = os.environ.get("SUPPORT_GROUP", "ULTROIDOFFICIAL_CHAT") # WITHOUR @
-CHANNEL = os.environ.get("CHANNEL", "ULTROID_OFFICIAL") # WITHOUR @
+OWNER_USERNAME = os.environ.get('OWNER_USERNAME', 'Admin')
+SUPPORT_GROUP = os.environ.get("SUPPORT_GROUP", "x") # WITHOUR @
+CHANNEL = os.environ.get("CHANNEL", "x") # WITHOUR @
 
 #auto delete
-DELETE_AFTER = int(os.environ.get("DELETE_AFTER", 60)) #seconds
+DELETE_AFTER = int(os.environ.get("DELETE_AFTER", 1200)) #seconds
 NOTIFICATION_TIME = int(os.environ.get('NOTIFICATION_TIME', 60)) #seconds
 AUTO_DELETE = os.environ.get("AUTO_DELETE", True) #ON/OFF
 GET_AGAIN = os.environ.get("GET_AGAIN", False) #ON/OFF
 DELETE_INFORM = os.environ.get("INFORM" , "Successfully DELETED !!")
-NOTIFICATION = os.environ.get("NOTIFICATION" ,"⚠️File will delete after {DELETE_AFTER} seconds.")
+NOTIFICATION = os.environ.get("NOTIFICATION" ,"⚠️File will delete after 20min.")
 GET_INFORM = os.environ.get("GET_INFORM" ,"File was deleted after {DELETE_AFTER} seconds. Use the button below to GET FILE AGAIN.")
 
 #Premium varibles
