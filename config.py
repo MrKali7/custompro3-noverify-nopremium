@@ -25,7 +25,7 @@ NOTIFICATION = os.environ.get("NOTIFICATION" ,"⚠️File will delete after 20mi
 GET_INFORM = os.environ.get("GET_INFORM" ,"File was deleted after {DELETE_AFTER} seconds. Use the button below to GET FILE AGAIN.")
 
 #Premium varibles
-PAYMENT_QR = os.getenv('PAYMENT_QR', 'https://graph.org/file/c54fdc8a5580bb801abc2.jpg')
+PAYMENT_QR = os.getenv('PAYMENT_QR', 'https://ibb.co/rb6vnwZ')
 PAYMENT_TEXT = os.getenv('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀɴs - \n\n'
                                       '- 20ʀs - 1 ᴡᴇᴇᴋ\n- 50ʀs - 1 ᴍᴏɴᴛʜ\n'
                                       '- 100ʀs - 3 ᴍᴏɴᴛʜs\n- 300ʀs - 6 ᴍᴏɴᴛʜs\n\n'
@@ -38,8 +38,8 @@ PAYMENT_TEXT = os.getenv('PAYMENT_TEXT', '<b>- ᴀᴠᴀɪʟᴀʙʟᴇ ᴘʟᴀ�
                                       '‼️ ᴀғᴛᴇʀ sᴇɴᴅɪɴɢ ᴀ sᴄʀᴇᴇɴsʜᴏᴛ ᴘʟᴇᴀsᴇ ɢɪᴠᴇ ᴜs sᴏᴍᴇ ᴛɪᴍᴇ ᴛᴏ ᴀᴅᴅ ʏᴏᴜ ɪɴ ᴛʜᴇ ᴘʀᴇᴍɪᴜᴍ</b>')
 
 
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://ultroidxTeam:ultroidxTeam@cluster0.gabxs6m.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-DB_NAME = os.environ.get("DATABASE_NAME", "Cluser10")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://molasa7348:29TiLiVemOcKUmxf@cluster0.9dkky.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+DB_NAME = os.environ.get("DATABASE_NAME", "Cluster0")
 
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1001830594381")) #database save channel id 
 FORCE_SUB_CHANNEL = int(os.environ.get("FORCE_SUB_CHANNEL", "-1001830594381"))
@@ -48,8 +48,8 @@ FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "-1001830594381"))
 FORCE_SUB_CHANNEL4 = int(os.environ.get("FORCE_SUB_CHANNEL4", "-1001830594381"))
 
 #Shortner (token system) 
-SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "inshorturl.com") 
-SHORTLINK_API = os.environ.get("SHORTLINK_API", "9f943360c339cec4fed66d9d5cbaa0c2b3d41f81")
+SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "offerlinks.in") 
+SHORTLINK_API = os.environ.get("SHORTLINK_API", "2b491547a49b1d8274e9a619c8258029ef2b8bd0")
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
 IS_VERIFY = os.environ.get("IS_VERIFY", "True")
 TUT_VID = os.environ.get("TUT_VID", "https://t.me")
@@ -73,7 +73,7 @@ FORCE_MSG = os.environ.get("FORCE_SUB_MESSAGE", "Hello {first}\n\n<b>You need to
 
 CUSTOM_CAPTION = os.environ.get("CUSTOM_CAPTION", None) # remove None and fo this ->: "here come your txt" also with this " " 
 
-PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "False") == "True" else False
+PROTECT_CONTENT = True if os.environ.get('PROTECT_CONTENT', "True") == "True" else False
 
 DISABLE_CHANNEL_BUTTON = os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True'
 
