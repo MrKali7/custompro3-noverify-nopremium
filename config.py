@@ -47,7 +47,7 @@ FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "-1002091491280"))
 FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "-1002091491280"))
 FORCE_SUB_CHANNEL4 = int(os.environ.get("FORCE_SUB_CHANNEL4", "-1002091491280"))
 
-#Shortner (token system) 
+#Shortner (token system) db_channel
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "offerlinks.in") 
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "2b491547a49b1d8274e9a619c8258029ef2b8bd0")
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
@@ -57,7 +57,7 @@ TUT_VID = os.environ.get("TUT_VID", "https://t.me")
 # ignore this one
 SECONDS = int(os.getenv("SECONDS", "200")) # auto delete in seconds
 
-PORT = os.environ.get("PORT", "8082")
+PORT = os.environ.get("PORT", "8083")
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "4"))
 START_MSG = os.environ.get("START_MESSAGE", "Hello {first}\n\nI can store private files in Specified Channel and other users can access it from special link.")
 
