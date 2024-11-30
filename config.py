@@ -20,8 +20,8 @@ DELETE_AFTER = int(os.environ.get("DELETE_AFTER", 1200)) #seconds
 NOTIFICATION_TIME = int(os.environ.get('NOTIFICATION_TIME', 60)) #seconds
 AUTO_DELETE = os.environ.get("AUTO_DELETE", True) #ON/OFF
 GET_AGAIN = os.environ.get("GET_AGAIN", False) #ON/OFF
-DELETE_INFORM = os.environ.get("INFORM" , "Successfully DELETED !!")
-NOTIFICATION = os.environ.get("NOTIFICATION" ,"⚠️File will delete after 20min.")
+#DELETE_INFORM = os.environ.get("INFORM" , "Successfully DELETED !!")
+NOTIFICATION = os.environ.get("NOTIFICATION" ,"⚠️File will delete after 30sec.")
 GET_INFORM = os.environ.get("GET_INFORM" ,"File was deleted after {DELETE_AFTER} seconds. Use the button below to GET FILE AGAIN.")
 
 #Premium varibles
