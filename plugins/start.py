@@ -130,69 +130,59 @@ async def start_command(client: Client, message: Message):
         verify_status = await get_verify_status(id)
 
         # Check verification status
-       if verify_status['is_verified']:
-    await update_verify_status(id, is_verified=True)
 
 
-        # Handle token verification link
-        #if "verify_" in message.text:
-            #_, token = message.text.split("_", 1)
-            #if verify_status['verify_token'] != token:
-                #sent_message = await message.reply("<b>Your token is invalid or expired. Try again by clicking /start.</b>")
-                #return
-            await update_verify_status(id, is_verified=True, verified_time=time.time())
-            sent_message = await message.reply("<b>Your token was successfully verified and is valid for 24 hours.</b>")
-        elif len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
-            try:
-                base64_string = message.text.split(" ", 1)[1]
-            except:
-                return
-            _string = await decode(base64_string)
-            argument = _string.split("-")
-            ids = []
+    # Always mark as verified
+await update_verify_status(id, is_verified=True)
 
-            if len(argument) == 3:
-                start = int(int(argument[1]) / abs(client.db_channel.id))
-                end = int(int(argument[2]) / abs(client.db_channel.id))
-                ids = range(start, end+1) if start <= end else []
-            elif len(argument) == 2:
-                ids = [int(int(argument[1]) / abs(client.db_channel.id))]
+# Handle messages and allow all users without any verification
+if len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
+    try:
+        base64_string = message.text.split(" ", 1)[1]
+    except:
+        return
+    _string = await decode(base64_string)
+    argument = _string.split("-")
+    ids = []
 
-            temp_msg = await message.reply("Please wait...")
+    if len(argument) == 3:
+        start = int(int(argument[1]) / abs(client.db_channel.id))
+        end = int(int(argument[2]) / abs(client.db_channel.id))
+        ids = range(start, end+1) if start <= end else []
+    elif len(argument) == 2:
+        ids = [int(int(argument[1]) / abs(client.db_channel.id))]
 
-            try:
-                messages = await get_messages(client, ids)
-            except:
-                error_msg = await message.reply_text("Something went wrong..!")
-                return
-            await temp_msg.delete()
+    temp_msg = await message.reply("Please wait...")
 
-            phdlusts = []
-            messages = await get_messages(client, ids)
-            for msg in messages:
-                if bool(CUSTOM_CAPTION) & bool(msg.document):
-                    caption = CUSTOM_CAPTION.format(previouscaption = "" if not msg.caption else msg.caption.html, filename = msg.document.file_name)
-                else:
-                    caption = "" if not msg.caption else msg.caption.html
+    try:
+        messages = await get_messages(client, ids)
+    except:
+        error_msg = await message.reply_text("Something went wrong..!")
+        return
+    await temp_msg.delete()
 
-                if DISABLE_CHANNEL_BUTTON:
-                    reply_markup = msg.reply_markup
-                else:
-                    reply_markup = None
-                
-                try:
-                    messages = await get_messages(client, ids)
-                    phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
-                    phdlusts.append(phdlust)
-                    if AUTO_DELETE == True:
-                        #await message.reply_text(f"The message will be automatically deleted in {delete_after} seconds.")
-                        asyncio.create_task(schedule_auto_delete(client, phdlust.chat.id, phdlust.id, delay=DELETE_AFTER))
-                    await asyncio.sleep(0.2)      
-                    #asyncio.sleep(0.2)
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
-                    phdlusts.append(phdlust)     
+    phdlusts = []
+    messages = await get_messages(client, ids)
+    for msg in messages:
+        caption = "" if not msg.caption else msg.caption.html
+        reply_markup = msg.reply_markup if not DISABLE_CHANNEL_BUTTON else None
+        
+        try:
+            phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
+            phdlusts.append(phdlust)
+            if AUTO_DELETE:
+                asyncio.create_task(schedule_auto_delete(client, phdlust.chat.id, phdlust.id, delay=DELETE_AFTER))
+            await asyncio.sleep(0.2)
+        except FloodWait as e:
+            await asyncio.sleep(e.x)
+            phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
+            phdlusts.append(phdlust)
+    
+# No need for token generation
+
+
+
+        
 
             # Notify user to get file again if messages are auto-deleted
             if GET_AGAIN == True:
