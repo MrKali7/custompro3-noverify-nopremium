@@ -108,7 +108,7 @@ async def delete_notification_after_delay(client, chat_id, message_id, delay):
         print(f"Error deleting notification {message_id} in chat {chat_id}: {e}")
         
         
-@Bot.on_message(filters.command('start') & filters.private & subscribed )
+@Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
     id = message.from_user.id
     UBAN = BAN  # Fetch the owner's ID from config
@@ -127,58 +127,55 @@ async def start_command(client: Client, message: Message):
                 print(f"Error adding user: {e}")
 
         premium_status = await is_premium_user(id)
-        verify_status = await get_verify_status(id)
-
-        # Check verification status
-
-
-    # Always mark as verified
-await update_verify_status(id, is_verified=True)
-
-# Handle messages and allow all users without any verification
-if len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
-    try:
-        base64_string = message.text.split(" ", 1)[1]
-    except:
-        return
-    _string = await decode(base64_string)
-    argument = _string.split("-")
-    ids = []
-
-    if len(argument) == 3:
-        start = int(int(argument[1]) / abs(client.db_channel.id))
-        end = int(int(argument[2]) / abs(client.db_channel.id))
-        ids = range(start, end+1) if start <= end else []
-    elif len(argument) == 2:
-        ids = [int(int(argument[1]) / abs(client.db_channel.id))]
-
-    temp_msg = await message.reply("Please wait...")
-
-    try:
-        messages = await get_messages(client, ids)
-    except:
-        error_msg = await message.reply_text("Something went wrong..!")
-        return
-    await temp_msg.delete()
-
-    phdlusts = []
-    messages = await get_messages(client, ids)
-    for msg in messages:
-        caption = "" if not msg.caption else msg.caption.html
-        reply_markup = msg.reply_markup if not DISABLE_CHANNEL_BUTTON else None
         
-        try:
-            phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
-            phdlusts.append(phdlust)
-            if AUTO_DELETE:
-                asyncio.create_task(schedule_auto_delete(client, phdlust.chat.id, phdlust.id, delay=DELETE_AFTER))
-            await asyncio.sleep(0.2)
-        except FloodWait as e:
-            await asyncio.sleep(e.x)
-            phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
-            phdlusts.append(phdlust)
-    
-# No need for token generation
+        # No need for verification check anymore
+        # Skip the verification logic completely
+        verify_status = {'is_verified': True}  # Mark all users as verified
+
+        # Handle messages and allow all users without any verification
+        if len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
+            try:
+                base64_string = message.text.split(" ", 1)[1]
+            except:
+                return
+            _string = await decode(base64_string)
+            argument = _string.split("-")
+            ids = []
+
+            if len(argument) == 3:
+                start = int(int(argument[1]) / abs(client.db_channel.id))
+                end = int(int(argument[2]) / abs(client.db_channel.id))
+                ids = range(start, end+1) if start <= end else []
+            elif len(argument) == 2:
+                ids = [int(int(argument[1]) / abs(client.db_channel.id))]
+
+            temp_msg = await message.reply("Please wait...")
+
+            try:
+                messages = await get_messages(client, ids)
+            except:
+                error_msg = await message.reply_text("Something went wrong..!")
+                return
+            await temp_msg.delete()
+
+            phdlusts = []
+            messages = await get_messages(client, ids)
+            for msg in messages:
+                caption = "" if not msg.caption else msg.caption.html
+                reply_markup = msg.reply_markup if not DISABLE_CHANNEL_BUTTON else None
+                
+                try:
+                    phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
+                    phdlusts.append(phdlust)
+                    if AUTO_DELETE:
+                        asyncio.create_task(schedule_auto_delete(client, phdlust.chat.id, phdlust.id, delay=DELETE_AFTER))
+                    await asyncio.sleep(0.2)
+                except FloodWait as e:
+                    await asyncio.sleep(e.x)
+                    phdlust = await msg.copy(chat_id=message.from_user.id, caption=caption, reply_markup=reply_markup , protect_content=PROTECT_CONTENT)
+                    phdlusts.append(phdlust)
+        
+        # No need for token generation anymore
 
 
 
