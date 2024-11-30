@@ -47,7 +47,7 @@ FORCE_SUB_CHANNEL2 = int(os.environ.get("FORCE_SUB_CHANNEL2", "0"))
 FORCE_SUB_CHANNEL3 = int(os.environ.get("FORCE_SUB_CHANNEL3", "0"))
 FORCE_SUB_CHANNEL4 = int(os.environ.get("FORCE_SUB_CHANNEL4", "0"))
 
-Shortner (token system) db_channel
+#Shortner (token system) db_channel
 SHORTLINK_URL = os.environ.get("SHORTLINK_URL", "MoneyKamalo.com") 
 SHORTLINK_API = os.environ.get("SHORTLINK_API", "0eefb93e1e3ce9470a7033115ceb1bad13a9d674")
 VERIFY_EXPIRE = int(os.environ.get('VERIFY_EXPIRE', 86400)) # Add time in seconds
