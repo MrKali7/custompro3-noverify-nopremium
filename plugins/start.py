@@ -134,11 +134,11 @@ async def start_command(client: Client, message: Message):
             await update_verify_status(id, is_verified=True)
 
         # Handle token verification link
-        if "verify_" in message.text:
-            _, token = message.text.split("_", 1)
-            if verify_status['verify_token'] != token:
-                sent_message = await message.reply("<b>Your token is invalid or expired. Try again by clicking /start.</b>")
-                return
+        #if "verify_" in message.text:
+            #_, token = message.text.split("_", 1)
+            #if verify_status['verify_token'] != token:
+                #sent_message = await message.reply("<b>Your token is invalid or expired. Try again by clicking /start.</b>")
+                #return
             await update_verify_status(id, is_verified=True, verified_time=time.time())
             sent_message = await message.reply("<b>Your token was successfully verified and is valid for 24 hours.</b>")
         elif len(message.text) > 7 and (verify_status['is_verified'] or premium_status):
